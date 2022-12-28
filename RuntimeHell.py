@@ -45,4 +45,4 @@ if __name__ == "__main__":
     initial_time = datetime.now()
     main()
     finish_time = datetime.now()
-    print(f'script finished, runtime is {finish_time - initial_time}')
+    print(f'script finished, runtime is {finish_time - initial_time}') # 1:47:01.518859
