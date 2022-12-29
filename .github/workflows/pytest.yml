@@ -15,10 +15,10 @@ jobs:
         with:
           timezoneLinux: "America/Chicago"
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ python_version }}
+      - name: Set up Python ${{ PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
-          python-version: $${{ python_version }}
+          python-version: $${{ PYTHON_VERSION }}
       - name: Install dependencies
         run: pip install pytest pytest-md pytest-emoji
       - uses: pavelzw/pytest-action@v2
