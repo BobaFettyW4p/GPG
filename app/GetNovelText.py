@@ -2,13 +2,13 @@ import gutenbergpy.textget, string, random
 
 
 #this function accepts one parameter, the BOOK_ID variable, and gets the full text.
-def get_book(BOOK_ID):
+def get_book(BOOK_ID) -> bytes:
     book = gutenbergpy.textget.get_text_by_id(BOOK_ID)
     return book
 
 #this function takes the full text of the novel, and turns it into a full list that is a word dictionary used
 #to create passwords
-def clean_book(book):
+def clean_book(book) -> list:
     final_book = []
     clean_book = gutenbergpy.textget.strip_headers(book)
     clean_book = clean_book.decode()
@@ -17,7 +17,7 @@ def clean_book(book):
     return final_book
 
 #This function uses the output of the above clean_book function, and generates a password with appropriate length
-def generate_password(final_book, PASSWORD_LENGTH):
+def generate_password(final_book, PASSWORD_LENGTH) -> list:
     password_candidates = []
     numbers = [*range(1,100)]
     characters = ['!','@','#','$','%','^','&','*','(',')','?','/']
