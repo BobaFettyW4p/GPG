@@ -13,15 +13,18 @@ def clean_book(book) -> list:
     clean_book = gutenbergpy.textget.strip_headers(book)
     clean_book = clean_book.decode()
     split = clean_book.split()
-    final_book = [x.title() for x in split if x not in final_book and len(x)>=4]
+    final_book = [x.title() for x in split if len(x)>=4]
+    final_book = set(final_book)
+    final_book = list(final_book)
     return final_book
 
 #This function uses the output of the above clean_book function, and generates a password with appropriate length
 def generate_password(final_book, PASSWORD_LENGTH) -> list:
+    NUMBER_OF_PASSWORDS = 5
     password_candidates = []
     numbers = [*range(1,100)]
     characters = ['!','@','#','$','%','^','&','*','(',')','?','/']
-    while len(password_candidates) < 5:
+    while len(password_candidates) < NUMBER_OF_PASSWORDS:
         password = ''
         while len(password) < PASSWORD_LENGTH - 3:
             choice = random.choice(final_book)
