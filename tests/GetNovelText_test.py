@@ -61,3 +61,37 @@ def test_generate_password_candidates(sample_dictionary):
     PASSWORD_LENGTH = 20
     candidates = GetNovelText.generate_password(sample_dictionary,PASSWORD_LENGTH)
     assert len(candidates) == 5
+
+def test_generate_password_two_digits(sample_dictionary):
+    PASSWORD_LENGTH = 20
+    candidates = GetNovelText.generate_password(sample_dictionary,PASSWORD_LENGTH)
+    valid = True
+    for candidate in candidates:
+        digits = [x for x in candidate if x.isdigit()]
+        if len(digits) != 2:
+            valid = False
+    assert valid
+
+def test_generate_password_password_length(sample_dictionary):
+    PASSWORD_LENGTH = 20
+    candidates = GetNovelText.generate_password(sample_dictionary,PASSWORD_LENGTH)
+    valid = True
+    for candidate in candidates:
+        if len(candidate) < PASSWORD_LENGTH:
+            valid = False
+    assert valid
+
+def test_generate_password_contains_special_character(sample_dictionary):
+    PASSWORD_LENGTH = 20
+    candidates = GetNovelText.generate_password(sample_dictionary,PASSWORD_LENGTH)
+    valid = True
+    for candidate in candidates:
+        valid = False
+        for character in candidate:
+            if character not in string.ascii_letters or not character.isdigit():
+                valid = True
+                break
+        if not valid:
+            assert valid
+    assert valid
+        
